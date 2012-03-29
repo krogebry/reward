@@ -1,0 +1,36 @@
+<%= form_for(@reward) do |f| %>
+  <% if @reward.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reward.errors.count, "error") %> prohibited this reward from being saved:</h2>
+
+      <ul>
+      <% @reward.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<select name="reward[user_id]">
+	<% @users.each do |user| %>
+		<option value="<%= user.id %>"><%= user.email %></option>
+	<% end %>
+	</select>
+	<br/>
+
+	<%= f.label :reward_type %>
+	<%= f.text_field :reward_type %>
+	<br/>
+
+	<%= f.label :amount %>
+	<%= f.text_field :amount %>
+	<br/>
+
+	<%= f.label :note %>
+	<%= f.text_field :note %>
+	<br/>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
