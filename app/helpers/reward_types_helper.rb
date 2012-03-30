@@ -1,0 +1,2 @@
+module RewardTypesHelper
+end

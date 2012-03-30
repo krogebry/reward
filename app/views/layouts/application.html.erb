@@ -8,8 +8,10 @@
 </head>
 <body>
 
-<%= link_to "Rewards", { :controller => "rewards", :action => "index" } %>
+<%= link_to "Main", { :controller => "rewards", :action => "index" } %>
 <%= link_to "Users", { :controller => "users", :action => "index" } %>
+<%= link_to "Reward Types", { :controller => "reward_types", :action => "index" } %>
+<%= link_to "Badge Types", { :controller => "badge_types", :action => "index" } %>
 <%= link_to "Logout ( %s )" % @current_user, logout_path %>
 
 <%= yield %>

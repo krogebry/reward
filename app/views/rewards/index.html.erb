@@ -14,13 +14,14 @@
   </tr>
 <% @my_rewards.each do |reward| %>
   <tr>
-		<td><%= reward.reward_type %></td>
-		<td><%= reward.amount %></td>
+		<td><%= reward.get_reward_type.display %></td>
+		<td><%= reward.reward_type_value %></td>
 		<td><%= reward.user.email %></td>
 		<td><%= reward.note %></td>
     <td><%= link_to 'Show', reward %></td>
-    <td><%= link_to 'Edit', edit_reward_path(reward) %></td>
-    <td><%= link_to 'Destroy', reward, :confirm => 'Are you sure?', :method => :delete %></td>
+    <!-- <td><%= link_to 'Edit', edit_reward_path(reward) %></td> -->
+    <td><%= link_to 'Redeem', { :controller => "rewards", :action => "redeem" } %></td>
+    <!-- <td><%= link_to 'Destroy', reward, :confirm => 'Are you sure?', :method => :delete %></td> -->
   </tr>
 <% end %>
 </table>
@@ -39,13 +40,13 @@
   </tr>
 <% @rewards_given.each do |reward| %>
   <tr>
-		<td><%= reward.reward_type %></td>
-		<td><%= reward.amount %></td>
+		<td><%= reward.get_reward_type.display%></td>
+		<td><%= reward.reward_type_value %></td>
 		<td><%= reward.user.email %></td>
 		<td><%= reward.note %></td>
     <td><%= link_to 'Show', reward %></td>
     <td><%= link_to 'Edit', edit_reward_path(reward) %></td>
-    <td><%= link_to 'Destroy', reward, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Revoke', reward, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

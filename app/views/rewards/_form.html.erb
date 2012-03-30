@@ -13,17 +13,20 @@
 
 	<select name="reward[user_id]">
 	<% @users.each do |user| %>
-		<option value="<%= user.id %>"><%= user.email %></option>
+		<option <%= (user.id == @reward.user_id ? "selected" : "") %> value="<%= user.id %>"><%= user.email %></option>
 	<% end %>
 	</select>
 	<br/>
 
-	<%= f.label :reward_type %>
-	<%= f.text_field :reward_type %>
+	<select name="reward[reward_type_id]">
+	<% @reward_types.each do |rt| %>
+		<option <%= (@reward.reward_type_id == rt.id ? "selected" : "") %> value="<%= rt.id %>"><%= rt.display %></option>
+	<% end %>
+	</select>
 	<br/>
 
-	<%= f.label :amount %>
-	<%= f.text_field :amount %>
+	<%= f.label :reward_type_value %>
+	<%= f.text_field :reward_type_value %>
 	<br/>
 
 	<%= f.label :note %>

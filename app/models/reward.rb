@@ -6,4 +6,8 @@ class Reward < ActiveRecord::Base
 
 	attr_accessor :type
 
+	def get_reward_type()
+		RewardType.find( self.reward_type_id )
+	end
+
 end

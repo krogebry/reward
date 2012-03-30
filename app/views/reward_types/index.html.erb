@@ -1,0 +1,27 @@
+<h1>Listing reward_types</h1>
+
+<table>
+  <tr>
+    <th>Display</th>
+    <th>Value type</th>
+    <th>Private</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reward_types.each do |reward_type| %>
+  <tr>
+		<td><%= reward_type.display %></td>
+		<td><%= reward_type.value_type %></td>
+		<td><%= reward_type.private %></td>
+    <td><%= link_to 'Show', reward_type %></td>
+    <td><%= link_to 'Edit', edit_reward_type_path(reward_type) %></td>
+    <td><%= link_to 'Destroy', reward_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Reward type', new_reward_type_path %>

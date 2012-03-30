@@ -28,6 +28,7 @@ class RewardsController < ApplicationController
   def new
 		@users = User.all
     @reward = Reward.new
+		@reward_types = RewardType.where( "user_id = ? OR private = false",  session[:login][:user_id] )
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,10 +36,14 @@ class RewardsController < ApplicationController
     end
   end
 
+	def redeem
+	end
+
   # GET /rewards/1/edit
   def edit
 		@users = User.all
     @reward = Reward.find(params[:id])
+		@reward_types = RewardType.where( "user_id = ? OR private = false",  session[:login][:user_id] )
   end
 
   # POST /rewards

@@ -1,0 +1,16 @@
+
+play_time: 
+  id: 100001
+  name: "play_time"
+  display: "Play time"
+  private: true
+  user_id: 1000002
+  value_type: "time"
+
+blow_job: 
+  id: 100002
+  name: "blow_job"
+  display: "Blow job"
+  user_id: 1000003
+  private: true
+  value_type: "time"
