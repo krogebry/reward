@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 20120329220619) do
 		t.string	"reward_type", :null => false
 		t.string	"note", :null => false
 		t.string	"amount", :null => false
+		t.integer	"rewarded_by_user_id", :null => false
 		t.integer	"user_id", :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

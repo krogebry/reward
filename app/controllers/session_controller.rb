@@ -5,9 +5,14 @@ class SessionController < ApplicationController
   def new
     session[:login] = nil
     if params[:username]
-      if User.authenticate(params[:username], params[:password])
+      if user = User.authenticate(params[:username], params[:password])
         reset_session
-        session[:login] = { :username => params[:username], :expires => Time.now + 3600 }
+        session[:login] = { 
+					:email => user.email,
+					:user_id => user.id,
+					:expires => Time.now + 3600,
+					:username => params[:username]
+				}
         flash[:notice] = "Logged in successfully"
         return redirect_to root_path
       else

@@ -1,5 +1,7 @@
 <h1>Listing rewards</h1>
 
+<h1>My Rewards</h1>
+
 <table>
   <tr>
 		<th>Type</th>
@@ -10,8 +12,7 @@
     <th></th>
     <th></th>
   </tr>
-
-<% @rewards.each do |reward| %>
+<% @my_rewards.each do |reward| %>
   <tr>
 		<td><%= reward.reward_type %></td>
 		<td><%= reward.amount %></td>
@@ -23,6 +24,32 @@
   </tr>
 <% end %>
 </table>
+
+<h1>Rewards given by me</h1>
+
+<table>
+  <tr>
+		<th>Type</th>
+		<th>Amount</th>
+		<th>User</th>
+		<th>Note</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @rewards_given.each do |reward| %>
+  <tr>
+		<td><%= reward.reward_type %></td>
+		<td><%= reward.amount %></td>
+		<td><%= reward.user.email %></td>
+		<td><%= reward.note %></td>
+    <td><%= link_to 'Show', reward %></td>
+    <td><%= link_to 'Edit', edit_reward_path(reward) %></td>
+    <td><%= link_to 'Destroy', reward, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
 
 <br />
 

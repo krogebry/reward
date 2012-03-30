@@ -2,7 +2,10 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
-    @rewards = Reward.where( "user_id IS NOT NULL AND user_id > 0" )
+    @all_rewards = Reward.where( "user_id IS NOT NULL AND user_id > 0" )
+		@my_rewards = Reward.where({ :user_id => session[:login][:user_id] })
+		@rewards_given = Reward.where({ :rewarded_by_user_id => session[:login][:user_id] })
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @rewards }
@@ -42,6 +45,7 @@ class RewardsController < ApplicationController
   # POST /rewards.json
   def create
     @reward = Reward.new(params[:reward])
+		@reward.rewarded_by_user_id = session[:login][:user_id]
 
     respond_to do |format|
       if @reward.save
