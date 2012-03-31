@@ -1,0 +1,24 @@
+
+<%= form_tag({ :action => "do_redeem", :id => @reward }) %>
+
+  <% if @reward.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reward.errors.count, "error") %> prohibited this reward from being saved:</h2>
+
+      <ul>
+      <% @reward.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<h1>Redemption notes.</h1>
+
+	<textarea name="notes"></textarea>
+
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+
+</form>

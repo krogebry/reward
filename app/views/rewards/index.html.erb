@@ -25,7 +25,7 @@
 			<td><%= reward.user.email %></td>
 			<td><%= reward.note %></td>
     	<td><%= link_to 'Show', reward %></td>
-    	<td><%= link_to 'Redeem', { :controller => "rewards", :action => "redeem" } %></td>
+    	<td><%= link_to 'Redeem',{ :action => "redeem", :id => reward } %></td>
   	</tr>
 	<% end %>
 	</tbody>
@@ -69,7 +69,7 @@
 			<td><%= reward.note %></td>
     	<td><%= link_to 'Show', reward %></td>
     	<td><%= link_to 'Edit', edit_reward_path(reward) %></td>
-    	<td><%= link_to 'Revoke', reward, :confirm => 'Are you sure?', :method => :delete %></td>
+    	<td><%= link_to 'Revoke',{ :action => "destroy", :id => reward } %></td>
   	</tr>
 	<% end %>
 	</tbody>
@@ -77,6 +77,44 @@
 	<tr>
 		<td colspan="7">
 			<span>Displaying <%= @rewards_given.count %></span>
+		</td>
+	</tr>
+	</tfoot>
+</table>
+</div>
+
+<div class="table_wrapper">
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr class='table_caption'>
+			<th class='table_header' colspan='6'>
+				<h3 class='table_title'>Redeemed Rewards</h3>
+				<div class="table_actions clearfix"> </div>
+			</th>
+		</tr>
+  	<tr>
+			<th>Type</th>
+			<th>Amount</th>
+			<th>User</th>
+			<th>Note</th>
+    	<th></th>
+  	</tr>
+	</thead>
+	<tbody>
+	<% @redeemed_rewards.each do |reward| %>
+  	<tr>
+			<td><%= reward.get_reward_type.display %></td>
+			<td><%= reward.reward_type_value %></td>
+			<td><%= reward.user.email %></td>
+			<td><%= reward.redeem_note %></td>
+    	<td><%= link_to 'Show', reward %></td>
+  	</tr>
+	<% end %>
+	</tbody>
+	<tfoot>
+	<tr>
+		<td colspan="6">
+			<span>Displaying <%= @redeemed_rewards.count %></span>
 		</td>
 	</tr>
 	</tfoot>

@@ -13,36 +13,37 @@
 ActiveRecord::Schema.define(:version => 20120330050857) do
 
   create_table "badge_types", :force => true do |t|
-		t.string   "name", :null => false
-		t.string   "display", :null => false
+    t.string   "name",       :null => false
+    t.string   "display",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "badges", :force => true do |t|
-		t.integer	 "badge_type_id", :null => false
+    t.integer  "badge_type_id",       :null => false
     t.integer  "rewarded_by_user_id", :null => false
     t.integer  "user_id",             :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "reward_types", :force => true do |t|
-		t.string "name", :null => false
-		t.string "display", :null => false
-		t.string "value_type", :null => false
-		t.string "value_display"
-		t.integer "user_id"
-		t.boolean "private", :default => true
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",                         :null => false
+    t.string   "display",                      :null => false
+    t.string   "value_type",                   :null => false
+    t.integer  "user_id"
+    t.boolean  "private",    :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "rewards", :force => true do |t|
     t.string   "note",                :null => false
-    t.integer	 "reward_type_id",			:null => false
-    t.integer	 "reward_type_value",   :null => false
+    t.string   "redeem_note",				  :null => true
+    t.integer  "reward_type_id",      :null => false
+    t.integer  "reward_type_value",   :null => false
     t.integer  "rewarded_by_user_id", :null => false
+		t.string	 "status",							:default => 'active'
     t.integer  "user_id",             :null => false
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false

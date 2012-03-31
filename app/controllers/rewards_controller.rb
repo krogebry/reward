@@ -2,9 +2,10 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
-    @all_rewards = Reward.where( "user_id IS NOT NULL AND user_id > 0" )
-		@my_rewards = Reward.where({ :user_id => session[:login][:user_id] })
-		@rewards_given = Reward.where({ :rewarded_by_user_id => session[:login][:user_id] })
+    @all_rewards = Reward.where( "user_id IS NOT NULL AND user_id > 0 AND status=?", Reward::STATUS_ACTIVE )
+		@my_rewards = Reward.where({ :user_id => session[:login][:user_id], :status => Reward::STATUS_ACTIVE })
+		@redeemed_rewards = Reward.where({ :user_id => session[:login][:user_id], :status => Reward::STATUS_REDEEMED })
+		@rewards_given = Reward.where({ :rewarded_by_user_id => session[:login][:user_id], :status => Reward::STATUS_ACTIVE })
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,8 +37,6 @@ class RewardsController < ApplicationController
     end
   end
 
-	def redeem
-	end
 
   # GET /rewards/1/edit
   def edit
@@ -79,15 +78,32 @@ class RewardsController < ApplicationController
     end
   end
 
+	def redeem
+    @reward = Reward.find(params[:id])
+    respond_to do |format|
+      format.html 
+      format.json { head :no_content }
+    end
+	end
+
+	def do_redeem
+    @reward = Reward.find(params[:id])
+		@reward.redeem( params[:notes] )
+    respond_to do |format|
+      format.html { redirect_to rewards_url }
+      format.json { head :no_content }
+    end
+	end
+
   # DELETE /rewards/1
   # DELETE /rewards/1.json
   def destroy
     @reward = Reward.find(params[:id])
     @reward.destroy
-
     respond_to do |format|
       format.html { redirect_to rewards_url }
       format.json { head :no_content }
     end
   end
+
 end
