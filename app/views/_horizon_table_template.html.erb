@@ -1,12 +1,11 @@
-
 <div class="table_wrapper">
 <table class="table table-bordered table-striped">
   <thead>
     <tr class='table_caption'>
       <th class='table_header' colspan='6'>
-        <h3 class='table_title'>Badge types</h3>
+        <h3 class='table_title'>Users</h3>
         <div class="table_actions clearfix">
-					<%= link_to 'New Badge type', new_badge_type_path, { :class => "btn" } %>
+          <%= link_to 'New User', new_user_path, { :class => "btn" } %>
         </div>                                
       </th>                                         
     </tr>                                               
@@ -15,20 +14,15 @@
     </tr>
   </thead>
   <tbody>
-	<% @badge_types.each do |badge_type| %>
-  <tr>
-    <td><%= link_to 'Show', badge_type %></td>
-    <td><%= link_to 'Edit', edit_badge_type_path(badge_type) %></td>
-    <td><%= link_to 'Destroy', badge_type, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-	<% end %>
+
   </tbody>
   <tfoot>
   <tr>
     <td colspan="6">
-      <span>Displaying <%= @badge_types.count %></span>
+      <span>Displaying <%= 1 %></span>
     </td>         
   </tr>             
   </tfoot>            
 </table>
 </div>
+

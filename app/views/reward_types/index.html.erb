@@ -1,16 +1,26 @@
-<h1>Listing reward_types</h1>
 
-<table>
-  <tr>
-    <th>Display</th>
-    <th>Value type</th>
-    <th>Private</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @reward_types.each do |reward_type| %>
+<div class="table_wrapper">
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr class='table_caption'>
+      <th class='table_header' colspan='6'>
+        <h3 class='table_title'>Reward types</h3>
+        <div class="table_actions clearfix">
+					<%= link_to 'New Reward type', new_reward_type_path, { :class => "btn" } %>
+        </div>                                
+      </th>                                         
+    </tr>                                               
+    <tr>
+    	<th>Display</th>
+    	<th>Value type</th>
+    	<th>Private</th>
+    	<th></th>
+    	<th></th>
+    	<th></th>
+    </tr>
+  </thead>
+  <tbody>
+	<% @reward_types.each do |reward_type| %>
   <tr>
 		<td><%= reward_type.display %></td>
 		<td><%= reward_type.value_type %></td>
@@ -19,9 +29,15 @@
     <td><%= link_to 'Edit', edit_reward_type_path(reward_type) %></td>
     <td><%= link_to 'Destroy', reward_type, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-<% end %>
+	<% end %>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="6">
+      <span>Displaying <%= @reward_types.count %></span>
+    </td>         
+  </tr>             
+  </tfoot>            
 </table>
+</div>
 
-<br />
-
-<%= link_to 'New Reward type', new_reward_type_path %>

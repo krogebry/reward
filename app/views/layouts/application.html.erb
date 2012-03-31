@@ -2,19 +2,64 @@
 <html>
 <head>
   <title>Rewards</title>
+	<!--
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+	-->
   <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    "bootstrap.min", :media => "all" %>
+  <%= stylesheet_link_tag    "style", :media => "all" %>
+  <%= javascript_include_tag "jquery.min" %>
+  <%= javascript_include_tag "bootstrap.min" %>
+  <%= javascript_include_tag "tabs" %>
 </head>
 <body>
 
-<%= link_to "Main", { :controller => "rewards", :action => "index" } %>
-<%= link_to "Users", { :controller => "users", :action => "index" } %>
-<%= link_to "Reward Types", { :controller => "reward_types", :action => "index" } %>
-<%= link_to "Badge Types", { :controller => "badge_types", :action => "index" } %>
-<%= link_to "Logout ( %s )" % @current_user, logout_path %>
+<div id="container"><!-- container -->
+
+<div class="sidebar">
+  <h1 class="brand clearfix"><a href="/home/">OpenStack Dashboard</a></h1>
+
+	<h4>Menu</h4>
+	<ul class="main_nav">
+		<li><%= link_to "Main", 
+			{ :controller => "rewards", :action => "index" }, 
+			{ :class => (controller_name == "rewards" ? "active" : "") } 
+		%></li>
+		<li><%= link_to "Users", 
+			{ :controller => "users", :action => "index" }, 
+			{ :class => (controller_name == "users" ? "active" : "") } 
+		%></li>
+		<li><%= link_to "Reward Types", 
+			{ :controller => "reward_types", :action => "index" }, 
+			{ :class => (controller_name == "reward_types" ? "active" : "") } 
+		%></li>
+		<li><%= link_to "Badge Types", 
+			{ :controller => "badge_types", :action => "index" }, 
+			{ :class => (controller_name == "badge_types" ? "active" : "") } 
+		%></li>
+	</ul>
+</div>
+
+<div id="main_content"><!-- main_content -->
+
+	<div class='topbar'> <!-- topbar -->
+		<div id="user_info" class="pull-right">
+			<span>Logged in as: <%= @current_user %></span> 
+			<!-- <a href="/settings/">Settings</a> -->
+			<%= link_to "Logout", logout_path %>
+		</div>
+		<div class='page-header'>
+			<h2><%= controller_name %></h2>
+		</div>
+	</div> <!-- topbar -->
 
 <%= yield %>
+
+</div><!-- main_content -->
+
+</div><!-- container -->
 
 </body>
 </html>

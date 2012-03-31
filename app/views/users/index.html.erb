@@ -1,23 +1,39 @@
-<h1>Listing users</h1>
 
-<table>
-  <tr>
-		<th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @users.each do |user| %>
+<div class="table_wrapper">
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr class='table_caption'>
+			<th class='table_header' colspan='6'>
+				<h3 class='table_title'>Users</h3>
+				<div class="table_actions clearfix">
+					<%= link_to 'New User', new_user_path, { :class => "btn" } %>
+				</div>
+			</th>
+		</tr>
+  	<tr>
+			<th>Email</th>
+    	<th></th>
+    	<th></th>
+    	<th></th>
+  	</tr>
+	</thead>
+	<tbody>
+	<% @users.each do |user| %>
   <tr>
 		<td><%= user.email %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-<% end %>
+	<% end %>
+	</tbody>
+	<tfoot>
+	<tr>
+		<td colspan="6">
+			<span>Displaying <%= @users.count %></span>
+		</td>
+	</tr>
+	</tfoot>
 </table>
+</div>
 
-<br />
-
-<%= link_to 'New User', new_user_path %>
